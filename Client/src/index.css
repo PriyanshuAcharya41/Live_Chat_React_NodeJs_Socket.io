@@ -1,0 +1,132 @@
+body{
+  background-color: black;
+  color:white;
+}
+
+.auto-scrolling-div::-webkit-scrollbar{
+  display: none;
+}
+.join_room{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap:1.5rem;
+
+  input{
+    height: 5vh;
+    width: 25%;
+    background-color: black;
+    border-style: none;
+    border:solid 3px wheat;
+    color:white;
+    padding-left:1rem;
+  }
+  input::placeholder{
+    font-weight: bolder;
+    font-size:1rem;
+  }
+
+  button{
+    height: 5vh;
+    width: 200px;
+    background-color: wheat;
+    border-style: none;
+    border:solid 3px rgb(0, 0, 0);
+    color:black;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+}
+
+.chat_container{
+  height: 90vh;
+  width: 40vw;
+  border: solid 3px wheat;
+  text-align: center;
+  margin:auto;  /*to get the box in center*/
+
+  .chat_box{
+    
+    height: 88%;
+    width: 100%;
+    position: relative;
+    border:solid wheat 1px;
+
+    
+  }
+
+  .message_content{
+    display: flex;
+    font-weight: bold;
+    margin:5px;
+    
+  }
+  #y{
+    background-color: rgb(174, 255, 174);
+    padding:2px;
+    color:black;
+    border-radius: 5px;
+  }
+  #g{
+    background-color: pink;
+    padding:2px;
+    color:black;
+    border-radius: 5px;
+  }
+  #you{
+    justify-content: flex-end;
+  }
+  #other{
+    justify-content: flex-start;
+  }
+  
+  #sender{
+    display: flex;
+    gap:10px;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+
+  }
+  #receiver{
+    display: flex;
+    gap:10px;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  
+  .chat_body{
+    position: absolute;
+    bottom:0;
+    
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    input{
+      height: 7vh;
+      width: 35vw;
+      padding-left:1vw;
+      background-color: black;
+      border:solid wheat 2px;
+      color:white;
+      /* border:solid 1px wheat; */
+    }
+    input::placeholder{
+      font-size: 1rem;
+      color:white;
+    }
+    button{
+      height: 8vh;
+      width: 4vw;
+      background-color: wheat;
+      border:solid rgb(0, 0, 0) 2px;
+      border-style: none;
+      /* margin-left: 0.3vw; */
+    }
+  }
+}
