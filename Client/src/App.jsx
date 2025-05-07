@@ -5,7 +5,7 @@ import io from 'socket.io-client'
 import music from './music.wav'
 
 
-const socket=io.connect("http://localhost:2000")  //ISme krna hai backend ka url AND cors ke orgin mai krna hai Frontend ka url 
+const socket=io.connect("https://live-chat-react-nodejs-socket-io.onrender.com")  //ISme krna hai backend ka url AND cors ke orgin mai krna hai Frontend ka url 
 
 const App = () => {
   const [username, setUsername] = useState("");
