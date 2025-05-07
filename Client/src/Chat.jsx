@@ -46,14 +46,15 @@ const Chat = ({socket,username,room}) => {
       <>
       
       <div className="chat_container">
-            <h1>Welcome {username}</h1>
+            <h1>Welcome {username}!</h1>
         <div className="chat_box">
+            
             <div className="auto-scrolling-div" 
             ref={containRef} style={
                 {
                     height:'85%',
                     overflowY:'auto',
-                    border:"solid 2px yellow"
+                    
                 }
             }>
 
@@ -76,13 +77,13 @@ const Chat = ({socket,username,room}) => {
             }
             </div>
             <div className="chat_body">
-                <input
+                <input id='input_chat_body'
                 value={currentMessage} type="text" placeholder='Type Your Message' onChange={(e)=>{
                     setCurrentMessage(e.target.value);}}
                     onKeyPress={(e)=>{
                         e.key==="Enter" && sendMessage()
                     }} />
-                <button  onClick={sendMessage}>&#9658;</button>
+                <button id='button_chat_body'  onClick={sendMessage}>&#9658;</button>
             </div>
         </div>
       </div>
