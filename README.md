@@ -22,7 +22,6 @@ Real-time chat application built with **React**, **Node.js**, and **Socket.IO** 
 | Join Room View  | Chat View |
 |------------------|------------|
 | ![Join Room](first.png) | ![Chat](second.png) |
-| ![Design Room](design1.png) | ![Chat](design.png)|
 ---
 
 ## 🔧 Tech Stack
