@@ -26,9 +26,14 @@ const App = () => {
     <>
     {
       !showchat && (
+
+        <div className="outer">
+        <div className="outer_left">
+          <img src="https://miro.medium.com/max/1400/1*A0xqqOV7LXlLEK1Acu8BFw.jpeg" alt="" />
+        </div>
         <div className="join_room">
       <h1>
-        Join Chat
+        Join Chat Room
       </h1>
       <input type="text" placeholder='enter your name' 
       onChange={(e)=>{
@@ -40,6 +45,7 @@ const App = () => {
         setRoom(e.target.value)
       }} />
       <button onClick={join_chat}>Join</button>
+    </div>
     </div>
       )
     }
