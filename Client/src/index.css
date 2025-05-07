@@ -1,22 +1,46 @@
 body{
-  background-color: black;
+  background-image: url("https://tse1.mm.bing.net/th?id=OIP.xEHBcSCJKyV8qe49HNcOswHaDt&pid=Api&P=0&h=180");
   color:white;
+  background-position: center;
+  background-size: cover;
 }
 
 .auto-scrolling-div::-webkit-scrollbar{
   display: none;
 }
+.outer{
+  margin:30vh;
+  display: flex;
+  justify-content: space-around;
+}
+.outer_left{
+  height: 100vh;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+  }
+}
 .join_room{
   height: 80vh;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap:1.5rem;
 
+  h1{
+    font-size:3rem;
+    color:black;
+  }
   input{
     height: 5vh;
-    width: 25%;
+    width: 80%;
     background-color: black;
     border-style: none;
     border:solid 3px wheat;
@@ -42,8 +66,7 @@ body{
 
 .chat_container{
   height: 90vh;
-  width: 40vw;
-  border: solid 3px wheat;
+  width: 40%;
   text-align: center;
   margin:auto;  /*to get the box in center*/
 
@@ -52,19 +75,16 @@ body{
     height: 88%;
     width: 100%;
     position: relative;
-    border:solid wheat 1px;
-
-    
   }
 
   .message_content{
     display: flex;
     font-weight: bold;
-    margin:5px;
+
     
   }
   #y{
-    background-color: rgb(174, 255, 174);
+    background-color: white;
     padding:2px;
     color:black;
     border-radius: 5px;
@@ -98,7 +118,6 @@ body{
     font-family: 'Times New Roman', Times, serif;
   }
   
-  
   .chat_body{
     position: absolute;
     bottom:0;
@@ -130,3 +149,33 @@ body{
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .outer {
+    flex-direction: column;
+    align-items: center;
+    margin:10vh;
+  } 
+}
+.outer_left,
+  .join_room {
+    width: 90%;
+    height: auto;
+  }
+
+  .chat_container{
+    width: 100%;
+  }
+  .chat_body{
+    #input_chat_body{
+      width: 87%;
+      margin-bottom:2vh;
+      
+      padding-left: 10px;
+    }
+    #button_chat_body{
+      width: 13%;
+      margin-bottom: 2vh;
+      font-size: 3vh;
+    }
+  }
