@@ -1,94 +1,63 @@
 import React from 'react'
-import { useState,useEffect,useRef } from 'react'
-import music from './iphone.mp3'
-const Chat = ({socket,username,room}) => {
-    const [currentMessage, setCurrentMessage] = useState("")
-    const [messageList, setMessageList] = useState([])
-    
-    const notification=new Audio(music);
-    
-    const sendMessage=async ()=>{
-        if(currentMessage!==""){
-            const messageData={
-                id:Math.random(),
-                room:room,
-                author:username,
-                message:currentMessage,
-                time:new Date(Date.now()).getHours()%12 + ":"+new Date(Date.now()).getMinutes()
-            }
-            await socket.emit("send_message",messageData); //We send the data of our message
-            setMessageList((list)=>[...list,messageData])
-            setCurrentMessage("");
-            notification.play();
-        }
+import { useState } from 'react'
+import Chat from './Chat'
+import io from 'socket.io-client'
+import music from './music.wav'
+
+
+const socket=io.connect("https://live-chat-react-nodejs-socket-io.onrender.com")  //ISme krna hai backend ka url AND cors ke orgin mai krna hai Frontend ka url 
+
+const App = () => {
+  const [username, setUsername] = useState("");
+  const [room, setRoom] = useState("");
+  const [showchat, setShowchat] = useState(false);
+
+  const notification= new Audio(music);
+
+  const join_chat=()=>{
+    if(username!="" && room!=""){
+      //hit the route by using socket.emit(route_name);
+      socket.emit("join_room",room);
+      setShowchat(true);
+      notification.play();
     }
-    
-    useEffect(() => {
-      const handleReceiveMsg=(data)=>{
-        setMessageList((list)=>[...list,data])
-      }
-      socket.on("receive_message",handleReceiveMsg);
-    
-      return () => {
-        socket.off("receive_message",handleReceiveMsg);
-      }
-    }, [socket])
-
-    //for automatic scrolling
-    const containRef=useRef(null);
-    useEffect(() => {
-      containRef.current.scrollTop=containRef.current.scrollHeight
-    }, [messageList])
-
-    
-    
+  }
   return (
-      <>
-      
-      <div className="chat_container">
-            <h1>Welcome {username}!</h1>
-        <div className="chat_box">
-            
-            <div className="auto-scrolling-div" 
-            ref={containRef} style={
-                {
-                    height:'85%',
-                    overflowY:'auto',
-                    
-                }
-            }>
+    <>
+    {
+      !showchat && (
 
-            
-            
-            {
-                messageList.map((data)=>(
-                    <div key={data.id} className='message_content' id={username=== data.author ? "you":"other"}>
-                        <div>
-                            <div className="msg" id={username=== data.author ? "y":"g"}>
-                                <p>{data.message}</p>
-                            </div>
-                            <div className="msg_detail" id={username=== data.author ? "sender":"receiver"}>
-                                <p>{data.author}</p>
-                                <p>{data.time}</p>
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
-            </div>
-            <div className="chat_body">
-                <input id='input_chat_body'
-                value={currentMessage} type="text" placeholder='Type Your Message' onChange={(e)=>{
-                    setCurrentMessage(e.target.value);}}
-                    onKeyPress={(e)=>{
-                        e.key==="Enter" && sendMessage()
-                    }} />
-                <button id='button_chat_body'  onClick={sendMessage}>&#9658;</button>
-            </div>
+        <div className="outer">
+        <div className="outer_left">
+          <img src="https://miro.medium.com/max/1400/1*A0xqqOV7LXlLEK1Acu8BFw.jpeg" alt="" />
         </div>
-      </div>
+        <div className="join_room">
+      <h1>
+        Join Chat Room
+      </h1>
+      <input type="text" placeholder='enter your name' 
+      onChange={(e)=>{
+        setUsername(e.target.value)
+      }}
+      />
+      <input type="text" name="" placeholder="enter chat room" id=""
+      onChange={(e)=>{
+        setRoom(e.target.value)
+      }} />
+      <button onClick={join_chat}>Join</button>
+    </div>
+    </div>
+      )
+    }
+    {
+      showchat && (
+        <Chat socket={socket} username={username} room={room}/>
+      )
+    }
+
+    
     </>
   )
 }
 
-export default Chat
+export default App
